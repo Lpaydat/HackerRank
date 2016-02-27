@@ -1,0 +1,14 @@
+object Solution {
+
+  def sumFibonacci(limit: Long, filter: List[Long] => List[Long] = x => x): Long = {
+    def fibonacci(prev: Long = 0, now: Long = 1): List[Long] =
+      if (prev > limit) Nil else prev :: fibonacci(now, prev + now)
+
+    filter(fibonacci()).sum
+  }
+  
+  def main(args: Array[String]) {
+    val input = io.Source.stdin.getLines().toList.drop(1).map(_.toLong)
+    input.foreach(x => println(sumFibonacci(x, _.filter(_ % 2 == 0))))
+  }
+}
