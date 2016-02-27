@@ -1,0 +1,10 @@
+object Solution {
+
+  def sum3and5(n: Int): Long =
+    (3L until n by 3).sum + (5L until n by 5).sum - (15L until n by 15).sum
+
+  def main(args: Array[String]) {
+    val input = io.Source.stdin.getLines().toList.drop(1).map(_.toInt)
+    input.foreach(x => println(sum3and5(x)))
+  }
+}
