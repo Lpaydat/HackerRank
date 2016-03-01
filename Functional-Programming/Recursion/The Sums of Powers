@@ -1,27 +1,27 @@
 object Solution {
     
-  def sumsOfPowers(limit: Int, power: Int): Int = {
-    def candidates(limit: Int, n: Int = 1): List[Int] = {
-      def powers(n: Int, power: Int): Int = if (power == 0) 1 else n * powers(n, power - 1)
-      val powered = powers(n, power)
-      if (powered > limit) Nil
-      else powered :: candidates(limit, n + 1)
+  def sumsOfPowers(target: Int, power: Int): Int = {
+    def candidates(n: Int = 1): List[Int] = {
+      def powers(power: Int): Int = if (power == 0) 1 else n * powers(power - 1)
+      val powered = powers(power)
+      if (powered > target) Nil
+      else powered :: candidates(n + 1)
     }
     
-    // create a list with all possibilities
+    // create all possible groups from candidates list
     def grouping(candidates: List[Int], set: List[List[Int]] = List(List(0))): List[List[Int]] = {
       if (candidates.isEmpty || set.isEmpty) List(List())
       else {
         val newSet = for {
           head <- candidates
-          cList <- set
-          if cList.sum + head <= limit && cList.max < head
-        } yield head :: cList
+          inSet <- set
+          if inSet.sum + head <= target && inSet.max < head
+        } yield head :: inSet
         newSet ::: grouping(candidates.tail, newSet)
       }
     }
     
-    grouping(candidates(limit)).count(_.sum == limit)
+    grouping(candidates()).count(_.sum == target)
   }
 
   def main(args: Array[String]) {
