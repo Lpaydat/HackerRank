@@ -10,6 +10,7 @@ object Solution {
     }
     val primes = primesUpTo(10000)
 
+    // extract the whole list to the prime factor list and count by map
     def refined(list: List[Int]): Map[Int, Int] = {
       def extractList(list: List[Int]): List[Int] = {
         def extractMember(n: Int, pl: List[Int] = primes): List[Int] = n match {
@@ -24,7 +25,8 @@ object Solution {
       }
       extractList(list).groupBy(identity).mapValues(_.size)
     }
-
+    
+    // pair two refined list and create new list of gcf
     def getGcf(xs: Map[Int,Int], ys: Map[Int,Int]): List[Int] = {
       def unzip(x: Int, y: Int): List[Int] =
         if (y == 1) List(x)
@@ -48,9 +50,12 @@ object Solution {
       }
       recur(list) % mod
     }
+    
     val gcf = getGcf(refined(x), refined(y))
     modByN(gcf, 1000000007)
   }
+  
+///////////////////////////////////////////////////////////////////////
 
   def main(args: Array[String]) {
     val input = (for (i <- 1 to 4) yield readLine()).map(_.split(" ").toList.map(_.toInt)).toList
