@@ -15,7 +15,7 @@ object Solution {
         val newGroup = for {
           head <- candidates
           someGroup <- grouped
-          if someGroup.sum + head <= target && someGroup.max < head // if summed is not exceed and head is not exists in group
+          if someGroup.sum + head <= target && someGroup.max < head // if summed is not exceed and head is not exists
         } yield head :: someGroup // added candidates.head to the groups that still in condition
         newGroup ::: grouping(candidates.tail, newGroup) // do it again with the next number in candidates list
       }
