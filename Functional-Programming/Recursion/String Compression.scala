@@ -9,7 +9,6 @@ object Solution {
         else f(arr.tail, curr, count + 1)
       }
     }
-
     f(s.toList).drop(1).map(x => if (x._2 == 1) x._1 else x._1 + x._2).mkString
   }
   
