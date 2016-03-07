@@ -1,5 +1,5 @@
 object Solution {
-  
+  // I cannot solve this problem by using List, must use Array and binary search.
   def minSubset(testCases: List[Long], arr: Array[Long]) = {
     def binarySearch(n: Long, ls: Array[Long], min: Int, max: Int): Int = {
       if (min < max) {
