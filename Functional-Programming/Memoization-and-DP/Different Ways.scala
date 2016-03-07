@@ -40,10 +40,8 @@ object Solution {
       else (ls.head * getModRemain(ls.tail)) % 100000007
     
     if (k == 0 || k == n) 1 else {
-      val flUp = factorialList(n)
-      val flDn = factorialList(k, n - k)
-      val up = getPrimeFactor(flUp)
-      val down = getPrimeFactor(flDn)
+      val up = getPrimeFactor(factorialList(n))
+      val down = getPrimeFactor(factorialList(k, n - k))
       val groupUp = groupDuplicates(up)
       val groupDown = groupDuplicates(down)
       val upUnique = up.filterNot(down.toSet).map(_.toLong)
