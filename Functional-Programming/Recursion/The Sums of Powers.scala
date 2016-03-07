@@ -9,15 +9,15 @@ object Solution {
     }
     
     // create all possible groups from candidates list
-    def grouping(candidates: List[Int], set: List[List[Int]] = List(List(0))): List[List[Int]] = {
-      if (candidates.isEmpty || set.isEmpty) List(List())
+    def grouping(candidates: List[Int], grouped: List[List[Int]] = List(List(0))): List[List[Int]] = {
+      if (candidates.isEmpty || grouped.isEmpty) List(List())
       else {
-        val newSet = for {
+        val newGroup = for {
           head <- candidates
-          inSet <- set
-          if inSet.sum + head <= target && inSet.max < head
-        } yield head :: inSet
-        newSet ::: grouping(candidates.tail, newSet)
+          someGroup <- grouped
+          if someGroup.sum + head <= target && someGroup.max < head // if summed is not exceed and head is not exists in group
+        } yield head :: someGroup // added candidates.head to the groups that still in condition
+        newGroup ::: grouping(candidates.tail, newGroup) // do it again with the next number in candidates list
       }
     }
     
