@@ -1,12 +1,12 @@
-  def algorithm(coefficients: List[Int], powers: List[Int], x: Double): Double =
+  def fx(coefficients: List[Int], powers: List[Int], x: Double): Double =
     if (coefficients.isEmpty || powers.isEmpty) 0
-    else coefficients.head * Math.pow(x, powers.head) + algorithm(coefficients.tail, powers.tail, x)
+    else coefficients.head * Math.pow(x, powers.head) + fx(coefficients.tail, powers.tail, x)
 
   def f(coefficients: List[Int], powers: List[Int], x: Double): Double =
-    0.001 * algorithm(coefficients, powers, x)
+    0.001 * fx(coefficients, powers, x)
 
   def area(coefficients: List[Int], powers: List[Int], x: Double): Double =
-    0.001 * Math.PI * Math.pow(algorithm(coefficients, powers, x), 2)
+    0.001 * Math.PI * Math.pow(fx(coefficients, powers, x), 2)
 
   def summation(
        func: (List[Int], List[Int], Double) => Double,
