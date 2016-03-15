@@ -1,0 +1,19 @@
+object Solution {
+  
+  def encoding(a: Char, k: Int): Char = {
+    val encoded = a.toInt + k % 26
+    a match {
+      case _ if a.isUpper => if (encoded > 90) (64 + encoded % 90).toChar else encoded.toChar
+      case _ if a.isLower => if (encoded > 122) (96 + encoded % 122).toChar else encoded.toChar
+      case _ => a
+    }
+  }
+
+  def main(args: Array[String]) {
+    val sc = new java.util.Scanner (System.in);
+    var n = sc.nextInt();
+    var s = sc.next();
+    var k = sc.nextInt();
+    println(s.map(x => encoding(x, k)))
+  }
+}
