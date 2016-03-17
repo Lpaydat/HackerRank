@@ -18,7 +18,6 @@ object Solution {
 
   def main(args: Array[String]) {
     val n = readInt()
-    val strList = for (i <- 1 to n) yield readLine()
-    strList.foreach(s => println(makeItAnagram(s)))
+    for (i <- 1 to n) println(makeItAnagram(readLine()))
   }
 }
