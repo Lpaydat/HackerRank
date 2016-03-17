@@ -2,10 +2,9 @@ object Solution {
   
   def insertionSort(arr: Array[Int]): String = {
     val lastIndex = arr.length
-    def recur(ar: Array[Int], n: Int): List[String] = {
+    def recur(ar: Array[Int], n: Int): List[String] =
       if (n > lastIndex) Nil
       else (ar.take(n).sorted ++ ar.drop(n)).mkString(" ") :: recur(ar, n + 1)
-    }
     recur(arr, 2).mkString("\n")
   }
 
