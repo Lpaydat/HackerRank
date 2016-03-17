@@ -1,0 +1,12 @@
+object Solution {
+  
+  def isSubstring(a: String, b: String): String = {
+    val coChar = a.filter(b.toSet).length
+    if (coChar == 0) "NO" else "YES"
+  }
+
+  def main(args: Array[String]) {
+    val n = readInt()
+    for (i <- 1 to n) println(isSubstring(readLine(), readLine()))
+  }
+}
