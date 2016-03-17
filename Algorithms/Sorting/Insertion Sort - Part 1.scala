@@ -5,17 +5,14 @@ object Solution {
       if (n == 0 || e > ar(n - 1)) {
         ar(n) = e
         ar.mkString(" ") :: Nil
-      }
-      else {
+      } else {
         ar(n) = ar(n - 1)
         ar.mkString(" ") :: printProcess(ar, n - 1, e)
       }
     }
-    val len = arr.length - 1
-    val e = arr(len)
-    printProcess(arr, len, e).mkString("\n")
+    val n = arr.length - 1
+    printProcess(arr, n, arr(n)).mkString("\n")
   }
-
 
   def main(args: Array[String]) {
     val n = readInt()
