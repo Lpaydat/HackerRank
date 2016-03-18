@@ -1,16 +1,17 @@
 object Solution {
-  
-  def insertionSort(arr: Array[Int]): String = {
-    val lastIndex = arr.length
-    def recur(ar: Array[Int], n: Int): List[String] =
-      if (n > lastIndex) Nil
-      else (ar.take(n).sorted ++ ar.drop(n)).mkString(" ") :: recur(ar, n + 1)
-    recur(arr, 2).mkString("\n")
-  }
 
   def main(args: Array[String]) {
     val n = readInt()
-    val input = readLine().split(" ").map(_.toInt)
-    println(insertionSort(input))
+    val arr = readLine().split(" ").map(_.toInt)
+    for (i <- 1 until arr.length) {
+      var j = i - 1
+      val key = arr(i)
+      while (j >= 0 && arr(j) > key) {
+        arr(j + 1) = arr(j)
+        j = j - 1
+      }
+      arr(j + 1) = key
+      println(arr.mkString(" "))
+    }
   }
 }
